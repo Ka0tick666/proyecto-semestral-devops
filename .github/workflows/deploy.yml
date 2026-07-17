@@ -59,3 +59,7 @@ jobs:
 
         docker push \
         018147952742.dkr.ecr.us-east-1.amazonaws.com/tienda-frontend:latest
+    - name: Deploy to EKS
+      run: |
+        aws eks update-kubeconfig --name devopseks --region us-east-1
+        kubectl apply -f k8s/
