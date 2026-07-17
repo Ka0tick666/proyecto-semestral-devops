@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tienda-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tienda-backend
+  template:
+    metadata:
+      labels:
+        app: tienda-backend
+    spec:
+      containers:
+        - name: backend
+          image: 018147952742.dkr.ecr.us-east-1.amazonaws.com/tienda-backend:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DB_ENDPOINT
+              value: "proyecto-semestral-db.c0bccfzhwg2t.us-east-1.rds.amazonaws.com"
+
+            - name: DB_PORT
+              value: "3306"
+
+            - name: DB_NAME
+              value: "ventasdb"
+
+            - name: DB_USERNAME
+              value: "admin"
+
+            - name: DB_PASSWORD
+              value: "Admin1234!"
